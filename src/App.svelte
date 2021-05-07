@@ -1,4 +1,7 @@
 <script>
+  import Announcement from "./Announcement.svelte";
+  import Annoucement from "./Announcement.svelte";
+
   let firstNaame = "";
   let lastName = "";
   let src = "favicon.png";
@@ -27,15 +30,25 @@
   }
 
   let fruits = [
-    { name: "Apple", color: "Red", amount: 5, id: 1 },
-    { name: "Lemon", color: "Yellow", amount: 8, id: 2 },
-    { name: "Pear", color: "Green", amount: 12, id: 3 },
+    { name: "Apple", color: "Red", amount: 4, id: 1 },
+    { name: "Lemon", color: "Yellow", amount: 3, id: 2 },
+    { name: "Pear", color: "Green", amount: 3, id: 3 },
   ];
 
   const deleteFruit = (id) => {
     fruits = fruits.filter((fruit) => fruit.id != id);
   };
+
+  let num = 10;
 </script>
+
+{#if num > 10}
+  <p>Greaster than 10</p>
+{:else if num < 10}
+  <p>Less than 10</p>
+{:else}
+  <p>Equal to 10</p>
+{/if}
 
 <main>
   <!--
@@ -49,17 +62,23 @@
   <button on:click={resetName}>Set name to unknown</button> 		
   <img {src} alt="Svelte Logo" />
    -->
+
+  <Announcement />
   <div class="card">
     {#each fruits as fruit (fruit.id)}
-      <div class="card">
-        <h5>{fruit.name}</h5>
-        <p>{fruit.color}</p>
-        <button
-          on:click={() => {
-            deleteFruit(fruit.id);
-          }}>Delete</button
-        >
-      </div>
+      {#if fruit.amount < 4}
+        <div class="card">
+          <h5>{fruit.name}</h5>
+          <p>{fruit.color}</p>
+          <button
+            on:click={() => {
+              deleteFruit(fruit.id);
+            }}>Delete</button
+          >
+        </div>
+      {:else}
+        <p>The amount for {fruit.name} is greater than or equal to 4</p>
+      {/if}
     {:else}
       <p>There was no fruit found.</p>
     {/each}
