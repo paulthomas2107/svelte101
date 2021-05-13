@@ -3,10 +3,11 @@
   const hideAlert = () => {
     show = false;
   };
+  let warning = true;
 </script>
 
 {#if show}
-  <div class="alert">50% off all fruit. Sign up for more fruit.
+  <div class="alert" class:warning={warning}>50% off all fruit. Sign up for more fruit.
   <button on:click={hideAlert}>Hide</button>
   </div>
 {/if}
@@ -17,5 +18,9 @@
     font-size: 18px;
     background-color: darkseagreen;
     color: darkslategray;
+  }
+  .warning {
+    background-color: lightpink;
+    color: darkred;
   }
 </style>

@@ -1,6 +1,10 @@
 <script>
   import Announcement from "./Announcement.svelte";
-  import Annoucement from "./Announcement.svelte";
+  import Button from "./Button.svelte";
+
+  const log = () => {
+    console.log("Button Clicked");
+  };
 
   let firstNaame = "";
   let lastName = "";
@@ -63,7 +67,10 @@
   <img {src} alt="Svelte Logo" />
    -->
 
+  <Button on:click={log}  />
+  <button on:click={log}>App button</button>
   <Announcement />
+  <div class="alert">This is our alert in main app</div>
   <div class="card">
     {#each fruits as fruit (fruit.id)}
       {#if fruit.amount < 4}
