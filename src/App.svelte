@@ -45,6 +45,14 @@
   };
 
   let num = 10;
+  let name = "Rory";
+  let isChecked = true;
+  let value = 2;
+  let selected;
+  let questions = [
+    { id: 1, text: "What is your fave color ?" },
+    { id: 2, text: "What is your fave fruit ?" },
+  ];
 </script>
 
 {#if num > 10}
@@ -67,6 +75,30 @@
   <button on:click={resetName}>Set name to unknown</button> 		
   <img {src} alt="Svelte Logo" />
    -->
+
+  <input type="text" bind:value={name} />
+  <input type="number" bind:value={num} />
+  <input type="checkbox" bind:checked={isChecked} />
+
+  <labeL>
+    <input type="radio" bind:group={value} value={1} />
+    1
+  </labeL>
+  <labeL>
+    <input type="radio" bind:group={value} value={2} />
+    2
+  </labeL><labeL>
+    <input type="radio" bind:group={value} value={3} />
+    3
+  </labeL>
+
+  <select bind:value={selected}>
+    {#each questions as question}
+      <option value={question}>
+        {question.text}
+      </option>
+    {/each}
+  </select>
 
   <Card>
     <div>
