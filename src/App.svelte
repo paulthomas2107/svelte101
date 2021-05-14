@@ -2,6 +2,7 @@
   import Announcement from "./Announcement.svelte";
   import Button from "./Button.svelte";
   import Card from "./Card.svelte";
+  import Form from "./Form.svelte";
 
   const log = () => {
     console.log("Element Clicked");
@@ -53,6 +54,17 @@
     { id: 1, text: "What is your fave color ?" },
     { id: 2, text: "What is your fave fruit ?" },
   ];
+
+  let foods = [
+    { name: "Apple", color: "Red", id: 1 },
+    { name: "Banana", color: "Yellow", id: 2 },
+  ];
+
+  const addFood = (e) => {
+    //console.log(e.detail);
+    const food = e.detail;
+    foods = [food, ...foods];
+  };
 </script>
 
 {#if num > 10}
@@ -75,6 +87,14 @@
   <button on:click={resetName}>Set name to unknown</button> 		
   <img {src} alt="Svelte Logo" />
    -->
+
+  <Form on:addFood={addFood} />
+  {#each foods as food (food.id)}
+    <div class="fooditem">
+      <h3>{food.name}</h3>
+      <p>Color: {food.color}</p>
+    </div>
+  {/each}
 
   <input type="text" bind:value={name} />
   <input type="number" bind:value={num} />
@@ -136,6 +156,13 @@
 </main>
 
 <style>
+  .fooditem {
+    border: 2px solid gray;
+    text-align: left;
+    padding: 8px;
+    margin-top: 20px;
+    width: 100%;
+  }
   h5,
   p {
     margin: 4px 0px;
@@ -152,12 +179,7 @@
   main {
     display: flex;
     flex-direction: column;
-    align-items: center;
-  }
-
-  h1 {
-    font-size: 72px;
-    text-align: center;
+    align-items: flex-start;
   }
 
   h3 {
