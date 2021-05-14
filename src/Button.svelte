@@ -2,9 +2,10 @@
   export let btnText = "Component Button";
 </script>
 
-<div on:click>
+<!--<div class="card" on:click|self> -->
+<div class="card">
   <span>Click to log</span>
-  <button>{btnText}</button>
+  <button on:click|once>{btnText}</button>
 </div>
 
 <main />
@@ -19,5 +20,10 @@
     background: #667eea;
     border: 1px solid #4c516f;
     color: #fff;
+  }
+  .card {
+    padding: 12px;
+    border: 2px solid gray;
+    margin-bottom: 8px;
   }
 </style>

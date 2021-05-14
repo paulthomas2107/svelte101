@@ -1,9 +1,10 @@
 <script>
   import Announcement from "./Announcement.svelte";
   import Button from "./Button.svelte";
+  import Card from "./Card.svelte";
 
   const log = () => {
-    console.log("Button Clicked");
+    console.log("Element Clicked");
   };
 
   let firstNaame = "";
@@ -67,7 +68,17 @@
   <img {src} alt="Svelte Logo" />
    -->
 
-  <Button on:click={log}  />
+  <Card>
+    <div>
+      <h3>Card</h3>
+      <p>This is my name: Paul</p>
+    </div>
+    <button slot="button">Test Button</button>
+    <div>
+      <h4>This is below all...</h4>
+    </div>
+  </Card>
+  <Button on:click={log} />
   <button on:click={log}>App button</button>
   <Announcement />
   <div class="alert">This is our alert in main app</div>
